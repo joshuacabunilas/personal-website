@@ -1,48 +1,42 @@
 export default function Experience() {
   return (
     <section className="section" id="experience">
-      <h2 className="section-title">
-        <span className="icon">💼</span>
-        Professional Experience
-      </h2>
-
-      <div className="exp-timeline">
-        {/* Ventaja */}
-        <div className="exp-card">
-          <div className="exp-header">
-            <span className="exp-company">VENTAJA INTERNATIONAL CORPORATION</span>
-            <span className="exp-date">Nov 2023 – Present</span>
+      <div className="reveal">
+        <span className="section-label">Journey</span>
+        <h2 className="section-title">Professional Path</h2>
+        
+        <div className="card-stack">
+          {/* Ventaja */}
+          <div className="experience-card glass">
+            <div className="exp-header">
+              <span className="exp-company gradient-text">VENTAJA INTERNATIONAL</span>
+              <span className="exp-date">2023 – Present</span>
+            </div>
+            <p className="exp-role">Junior Software Engineer</p>
+            <ul className="exp-list">
+              <li>Architect cross-platform mobile features using Flutter & BLoC.</li>
+              <li>Collaborate on .NET & Next.js enterprise solutions.</li>
+              <li>Utilize AI tools to accelerate feature prototyping and refactoring.</li>
+            </ul>
+            <div className="exp-project">
+              <div className="exp-project-label">Flagship Project</div>
+              <div className="exp-project-title">Tubo PH — Timekeeping Solution</div>
+              <p>Developed an automated biometric-replacement for manpower agencies with real-time geolocation and tracking.</p>
+            </div>
           </div>
-          <p className="exp-role">Junior Software Engineer / L2 Support</p>
-          <ul className="exp-list">
-            <li>Architect and deploy cross-platform mobile features using Flutter, ensuring clean, efficient, and well-documented codebases.</li>
-            <li>Implement BLoC state management patterns to handle complex application states and ensure performance scalability.</li>
-            <li>Collaborate with senior developers to design and debug software using <strong>.NET Framework</strong> and <strong>Next.js</strong>.</li>
-            <li>Utilize AI tools (Copilot, Claude) to refactor legacy code, automate unit testing, and accelerate feature prototyping.</li>
-            <li>Resolve complex technical escalations and provide deep-dive debugging for critical L2 software issues.</li>
-          </ul>
 
-          <div className="exp-project">
-            <div className="exp-project-label">🔑 Key Project</div>
-            <div className="exp-project-title">Tubo PH — Mobile Timekeeping Solution</div>
-            <p>
-              Developed an economical timekeeping solution for manpower agencies, replacing unreliable manual and biometric systems.
-              Integrated real-time tracking for geolocation, attendance, overtime, and automated notifications for both iOS and Android.
-            </p>
+          {/* Trend Micro */}
+          <div className="experience-card glass">
+            <div className="exp-header">
+              <span className="exp-company gradient-text">TREND MICRO</span>
+              <span className="exp-date">2022 – 2023</span>
+            </div>
+            <p className="exp-role">GRID DevOps Intern</p>
+            <ul className="exp-list">
+              <li>Engineered Python scripts for automated software lifecycle management.</li>
+              <li>Conducted vulnerability research on automotive software systems.</li>
+            </ul>
           </div>
-        </div>
-
-        {/* Trend Micro */}
-        <div className="exp-card">
-          <div className="exp-header">
-            <span className="exp-company">TREND MICRO</span>
-            <span className="exp-date">Dec 2022 – Mar 2023</span>
-          </div>
-          <p className="exp-role">GRID DevOps Intern</p>
-          <ul className="exp-list">
-            <li>Engineered Python scripts to automate the download, installation, and uninstallation cycle for Microsoft Store applications.</li>
-            <li>Conducted data gathering and vulnerability research on software affecting automotive systems.</li>
-          </ul>
         </div>
       </div>
     </section>

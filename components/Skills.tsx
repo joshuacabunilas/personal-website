@@ -2,56 +2,50 @@ const skillCategories = [
   {
     icon: "📱",
     title: "Mobile Development",
-    tags: ["Flutter", "Dart", "BLoC", "Clean Architecture", "iOS", "Android"],
+    desc: "Flutter, Dart, BLoC, Clean Architecture",
+    class: "bento-2x2",
   },
   {
     icon: "🌐",
     title: "Web & Backend",
-    tags: ["Next.js", ".NET Framework", "C#", "C++", "Python", "JavaScript"],
+    desc: "Next.js, .NET Framework, C#, C++, Python",
+    class: "bento-2x1",
   },
   {
     icon: "🤖",
-    title: "AI & Developer Tools",
-    tags: ["GitHub Copilot", "Claude AI", "Antigravity/Cursor", "Postman", "Visual Studio"],
+    title: "AI Tools",
+    desc: "GitHub Copilot, Claude AI, Antigravity",
+    class: "bento-1x2",
   },
   {
     icon: "☁️",
     title: "Cloud & DevOps",
-    tags: ["AWS", "Azure DevOps", "Linux/Unix", "Bash Scripting"],
+    desc: "AWS, Azure, Linux, Bash",
+    class: "bento-1x2",
   },
   {
     icon: "🔌",
-    title: "Embedded & AI",
-    tags: ["TensorFlow", "OpenCV", "Mask R-CNN", "Arduino Uno", "Raspberry Pi"],
-  },
-  {
-    icon: "🔗",
-    title: "Networking",
-    tags: ["CCNA", "Routing/Switching", "VLANs", "VPNs", "Microsoft SQL"],
+    title: "Embedded",
+    desc: "TensorFlow, OpenCV, Arduino, Pi",
+    class: "bento-2x1",
   },
 ];
 
 export default function Skills() {
   return (
     <section className="section" id="skills">
-      <h2 className="section-title">
-        <span className="icon">⚡</span>
-        Technical Skills
-      </h2>
-      <div className="skills-grid">
-        {skillCategories.map((cat) => (
-          <div key={cat.title} className="skill-card">
-            <div className="skill-card-header">
-              <span className="skill-card-icon">{cat.icon}</span>
-              <span className="skill-card-title">{cat.title}</span>
+      <div className="reveal">
+        <span className="section-label">Expertise</span>
+        <h2 className="section-title">Technical Arsenal</h2>
+        <div className="bento-grid">
+          {skillCategories.map((cat) => (
+            <div key={cat.title} className={`bento-item glass ${cat.class}`}>
+              <div className="bento-header">{cat.icon}</div>
+              <div className="bento-title">{cat.title}</div>
+              <div className="bento-desc">{cat.desc}</div>
             </div>
-            <div className="skill-tags">
-              {cat.tags.map((tag) => (
-                <span key={tag} className="skill-tag">{tag}</span>
-              ))}
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
