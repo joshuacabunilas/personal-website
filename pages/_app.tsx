@@ -21,21 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     const revealElements = document.querySelectorAll('.reveal');
     revealElements.forEach((el) => observer.observe(el));
 
-    // Navbar Scroll Logic
-    const handleScroll = () => {
-      const nav = document.querySelector('.navbar');
-      if (window.scrollY > 50) {
-        nav?.classList.add('scrolled');
-      } else {
-        nav?.classList.remove('scrolled');
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      observer.disconnect();
-    };
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -49,15 +35,10 @@ function MyApp({ Component, pageProps }: AppProps) {
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800;900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
       </Head>
-      
-      <div className="mesh-wrapper">
-        <div className="mesh-gradient" />
-      </div>
-
       <Component {...pageProps} />
     </>
   );

@@ -1,48 +1,23 @@
-const skillCategories = [
-  {
-    icon: "📱",
-    title: "Mobile Development",
-    desc: "Flutter, Dart, BLoC, Clean Architecture",
-    class: "bento-2x2",
-  },
-  {
-    icon: "🌐",
-    title: "Web & Backend",
-    desc: "Next.js, .NET Framework, C#, C++, Python",
-    class: "bento-2x1",
-  },
-  {
-    icon: "🤖",
-    title: "AI Tools",
-    desc: "GitHub Copilot, Claude AI, Antigravity",
-    class: "bento-1x2",
-  },
-  {
-    icon: "☁️",
-    title: "Cloud & DevOps",
-    desc: "AWS, Azure, Linux, Bash",
-    class: "bento-1x2",
-  },
-  {
-    icon: "🔌",
-    title: "Embedded",
-    desc: "TensorFlow, OpenCV, Arduino, Pi",
-    class: "bento-2x1",
-  },
-];
-
 export default function Skills() {
+  const skills = [
+    { title: "Mobile", desc: "Flutter, Dart, BLoC Expert.", color: "#000" },
+    { title: "Backend", desc: ".NET, C#, Python, SQL.", color: "#1d1d1f" },
+    { title: "Web", desc: "Next.js, React, Clean UI.", color: "#1d1d1f" },
+    { title: "AI", desc: "Neural Networks & LLMs.", color: "#000" },
+  ];
+
   return (
-    <section className="section" id="skills">
-      <div className="reveal">
-        <span className="section-label">Expertise</span>
-        <h2 className="section-title">Technical Arsenal</h2>
-        <div className="bento-grid">
-          {skillCategories.map((cat) => (
-            <div key={cat.title} className={`bento-item glass ${cat.class}`}>
-              <div className="bento-header">{cat.icon}</div>
-              <div className="bento-title">{cat.title}</div>
-              <div className="bento-desc">{cat.desc}</div>
+    <section className="section" id="skills" style={{ background: '#f5f5f7' }}>
+      <div className="container reveal">
+        <h2 className="section-title" style={{ color: '#1d1d1f' }}>Technical Arsenal.</h2>
+        <p className="section-desc" style={{ color: '#86868b' }}>Precision-engineered stack for world-class solutions.</p>
+        
+        <div className="content-grid">
+          {skills.map((s, idx) => (
+            <div key={s.title} className="apple-card" style={{ background: s.color, color: '#f5f5f7' }}>
+              <div className="card-label">Capability {idx + 1}</div>
+              <div className="card-title">{s.title}.</div>
+              <div className="card-desc">{s.desc}</div>
             </div>
           ))}
         </div>

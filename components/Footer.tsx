@@ -1,20 +1,15 @@
 export default function Footer() {
   return (
-    <footer className="footer" style={{ padding: '80px 0' }}>
-      <div className="container reveal">
-        <div className="navbar-brand gradient-text" style={{ fontSize: '2rem', marginBottom: '1rem', display: 'block' }}>
-          JJC
+    <footer className="section" style={{ background: '#1d1d1f', padding: '60px 0' }}>
+      <div className="container reveal" style={{ textAlign: 'center' }}>
+        <h2 style={{ fontSize: '2rem', fontWeight: 600, marginBottom: '2rem' }}>Ready to collaborate?</h2>
+        <div style={{ display: 'flex', gap: '3rem', justifyContent: 'center', marginBottom: '3rem' }}>
+          <a href="mailto:joshuacabunilas20@gmail.com" className="link-button">Email</a>
+          <a href="https://linkedin.com/in/joshuacabunilas" className="link-button">LinkedIn</a>
         </div>
-        <p className="hero-role" style={{ fontSize: '1rem', marginBottom: '2rem' }}>
-          Building digital excellence since 2023.
+        <p style={{ color: '#86868b', fontSize: '0.8rem' }}>
+          Copyright © {new Date().getFullYear()} Joshua John Cabunilas. All rights reserved.
         </p>
-        <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center', marginBottom: '2rem' }}>
-          <a href="mailto:joshuacabunilas20@gmail.com" className="btn btn-secondary">Email</a>
-          <a href="https://linkedin.com/in/joshuacabunilas" className="btn btn-secondary">LinkedIn</a>
-        </div>
-        <div className="footer-sub">
-          © {new Date().getFullYear()} · Design for 2026
-        </div>
       </div>
     </footer>
   );
