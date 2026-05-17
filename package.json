@@ -4,8 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider next build",
     "start": "next start"
+  },
+  "engines": {
+    "node": ">=16.x"
   },
   "dependencies": {
     "next": "11.1.4",
