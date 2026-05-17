@@ -1,15 +1,25 @@
 export default function Footer() {
   return (
-    <footer className="section" style={{ background: '#1d1d1f', padding: '60px 0' }}>
-      <div className="container reveal" style={{ textAlign: 'center' }}>
-        <h2 style={{ fontSize: '2rem', fontWeight: 600, marginBottom: '2rem' }}>Ready to collaborate?</h2>
-        <div style={{ display: 'flex', gap: '3rem', justifyContent: 'center', marginBottom: '3rem' }}>
-          <a href="mailto:joshuacabunilas20@gmail.com" className="link-button">Email</a>
-          <a href="https://linkedin.com/in/joshuacabunilas" className="link-button">LinkedIn</a>
+    <footer className="footer">
+      <div className="container">
+        <div className="footer-inner">
+
+          <div className="footer-brand">
+            <span className="footer-monogram">JC</span>
+            <span className="footer-tagline">Flutter Developer · Manila, PH</span>
+          </div>
+
+          <div className="footer-links">
+            <a href="mailto:joshuacabunilas20@gmail.com">Email</a>
+            <a href="https://linkedin.com/in/joshua-cabunilas-0587b8179" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://github.com/joshuacabunilas" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+
         </div>
-        <p style={{ color: '#86868b', fontSize: '0.8rem' }}>
-          Copyright © {new Date().getFullYear()} Joshua John Cabunilas. All rights reserved.
-        </p>
+
+        <div className="footer-bottom">
+          <p className="footer-copy">© {new Date().getFullYear()} Joshua John Cabunilas. All rights reserved.</p>
+        </div>
       </div>
     </footer>
   );

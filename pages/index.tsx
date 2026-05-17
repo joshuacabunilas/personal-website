@@ -12,33 +12,23 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Joshua John Cabunilas | Software Engineer</title>
-        <meta
-          name="description"
-          content="Resume of Joshua John L. Cabunilas – Software Engineer specializing in Flutter, .NET, and Next.js. Computer Engineering graduate from Mapúa University."
-        />
-        <meta
-          name="keywords"
-          content="Joshua Cabunilas, Software Engineer, Flutter Developer, Next.js, .NET, Mapúa University, Resume, Portfolio"
-        />
+        <title>Joshua Cabunilas — Software Engineer</title>
+        <meta name="description" content="Software engineer specializing in Flutter, .NET, and Next.js. Based in the Philippines." />
         <meta name="author" content="Joshua John L. Cabunilas" />
-        <meta property="og:title" content="Joshua John Cabunilas | Software Engineer" />
-        <meta
-          property="og:description"
-          content="Resume of Joshua John L. Cabunilas – Software Engineer specializing in Flutter, .NET, and Next.js."
-        />
-        <meta property="og:type" content="website" />
       </Head>
       <main>
         <Navbar />
         <Hero />
-        <div className="container">
-          <Summary />
-          <Skills />
-          <Experience />
-          <Projects />
-          <Education />
-        </div>
+        <hr className="divider" />
+        <Summary />
+        <hr className="divider" />
+        <Skills />
+        <hr className="divider" />
+        <Experience />
+        <hr className="divider" />
+        <Projects />
+        <hr className="divider" />
+        <Education />
         <Footer />
       </main>
     </>

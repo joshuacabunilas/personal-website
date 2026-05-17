@@ -1,27 +1,78 @@
+const projects = [
+  {
+    name: 'Tubo PH',
+    desc: 'Timekeeping solution for manpower agencies — tracks employee locations, lateness, absences, and overtime on iOS & Android at ₱50/employee/month, replacing unreliable biometric systems.',
+    tags: ['Flutter', 'Dart', 'BLoC', 'iOS & Android'],
+    badge: 'private',
+    highlight: null,
+  },
+  {
+    name: 'PayRemit',
+    desc: 'Fintech app for Filipino and Indian migrant workers to pay SSS, Pag-IBIG, and PhilHealth contributions, settle bills, and purchase load — available on iOS & Android.',
+    tags: ['Flutter', 'Dart', 'BLoC', 'Fintech'],
+    badge: 'private',
+    highlight: null,
+  },
+  {
+    name: 'AFB Detection — MASK R-CNN',
+    desc: 'AI-powered microscopy tool detecting Acid-Fast Bacilli in slit-skin smear slides. Presented at ICBET 2023.',
+    tags: ['Python', 'TensorFlow', 'ML', 'Research'],
+    badge: 'research',
+    highlight: '2nd Best Poster Thesis · ICBET 2023',
+  },
+  {
+    name: 'IoT Smart Parking System',
+    desc: 'Embedded systems project using Arduino and the Blynk app for real-time parking slot detection and remote monitoring.',
+    tags: ['Arduino', 'C++', 'IoT', 'Embedded'],
+    badge: null,
+    highlight: null,
+  },
+  {
+    name: 'COVID-19 Herd Immunity Predictor',
+    desc: 'C++ simulation predicting the timeline of COVID-19 herd immunity in the Philippines using epidemiological modelling.',
+    tags: ['C++', 'Simulation', 'Research'],
+    badge: 'research',
+    highlight: null,
+  },
+];
+
+const BADGE_LABEL: Record<string, string> = {
+  private:  'Private',
+  research: 'Research',
+};
+
 export default function Projects() {
   return (
-    <section className="section" id="projects" style={{ background: '#f5f5f7' }}>
-      <div className="container reveal">
-        <h2 className="section-title" style={{ color: '#1d1d1f' }}>Selected Works.</h2>
-        
-        <div className="content-grid">
-          <div className="apple-card content-full" style={{ background: '#000', minHeight: '500px', justifyContent: 'center', textAlign: 'center' }}>
-            <div className="card-label">Research Excellence</div>
-            <div className="card-title" style={{ fontSize: '3rem' }}>Acid-Fast Bacilli Detection.</div>
-            <p className="card-desc">AI-powered microscopy analysis presented at ICBET 2023.</p>
-          </div>
-          
-          <div className="apple-card" style={{ background: '#fff', border: '1px solid #d2d2d7' }}>
-            <div className="card-label" style={{ color: '#86868b' }}>IoT Solution</div>
-            <div className="card-title" style={{ color: '#1d1d1f' }}>Smart Parking System.</div>
-            <p className="card-desc" style={{ color: '#86868b' }}>Award-winning hardware integration.</p>
-          </div>
+    <section className="section" id="projects">
+      <div className="container">
+        <p className="section-label">Projects</p>
+        <h2 className="section-title">Things I&apos;ve built</h2>
 
-          <div className="apple-card" style={{ background: '#0066cc', color: '#fff' }}>
-            <div className="card-label" style={{ color: 'rgba(255,255,255,0.7)' }}>Open Source</div>
-            <div className="card-title">Modern Design Tools.</div>
-            <p className="card-desc" style={{ color: 'rgba(255,255,255,0.8)' }}>Crafting premium UI systems.</p>
-          </div>
+        <div className="projects-grid">
+          {projects.map((p) => (
+            <div key={p.name} className="project-card">
+              <div className="project-card-top">
+                <div className="project-name">{p.name}</div>
+                {p.badge && (
+                  <span className={`project-badge project-badge--${p.badge}`}>
+                    {BADGE_LABEL[p.badge]}
+                  </span>
+                )}
+              </div>
+
+              {p.highlight && (
+                <div className="project-highlight">{p.highlight}</div>
+              )}
+
+              <p className="project-desc">{p.desc}</p>
+
+              <div className="project-tags">
+                {p.tags.map(tag => (
+                  <span key={tag} className="tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
