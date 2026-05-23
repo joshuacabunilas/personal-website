@@ -1,3 +1,5 @@
+import { education } from '../data/education';
+
 export default function Education() {
   return (
     <section className="section" id="education">
@@ -5,23 +7,17 @@ export default function Education() {
         <p className="section-label">Education</p>
         <h2 className="section-title">Background</h2>
 
-        <div className="edu-list">
-          <div className="edu-item">
-            <div className="edu-year">2013 – 2023</div>
-            <div>
-              <div className="edu-school">Mapúa University</div>
-              <div className="edu-degree">B.S. Computer Engineering, Specialized in Embedded Systems</div>
+        <dl className="edu-list">
+          {education.map((item) => (
+            <div key={item.school} className="edu-item">
+              <dt className="edu-year">{item.period}</dt>
+              <dd>
+                <div className="edu-school">{item.school}</div>
+                <div className="edu-degree">{item.degree}</div>
+              </dd>
             </div>
-          </div>
-
-          <div className="edu-item">
-            <div className="edu-year">2006 – 2013</div>
-            <div>
-              <div className="edu-school">Don Bosco Technical Institute Makati</div>
-              <div className="edu-degree">Secondary — Electrical Technology</div>
-            </div>
-          </div>
-        </div>
+          ))}
+        </dl>
       </div>
     </section>
   );

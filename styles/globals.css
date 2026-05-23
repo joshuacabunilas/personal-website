@@ -30,6 +30,31 @@
   padding: 0;
 }
 
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  padding: 0.5rem 1rem;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 0 0 8px 8px;
+  z-index: 9999;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -322,21 +347,24 @@ body {
 .hero-avatar-wrap {
   position: relative;
   flex-shrink: 0;
-}
-
-.hero-avatar {
   width: 148px;
   height: 148px;
   border-radius: 50%;
-  object-fit: cover;
-  object-position: center top;
-  display: block;
+  /* Shadow lives here so next/image's overflow:hidden wrapper doesn't clip it */
   box-shadow:
     0 0 0 3px rgba(255, 255, 255, 0.12),
     0 12px 36px rgba(0, 0, 0, 0.4);
 }
 
-[data-theme="light"] .hero-avatar {
+.hero-avatar {
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  vertical-align: top;
+}
+
+[data-theme="light"] .hero-avatar-wrap {
   box-shadow:
     0 0 0 3px rgba(0, 0, 0, 0.08),
     0 12px 36px rgba(0, 0, 0, 0.12);
@@ -352,6 +380,7 @@ body {
   background: #22c55e;
   border-radius: 50%;
   border: 3px solid #161616;
+  z-index: 1;
 }
 
 [data-theme="light"] .hero-avatar-wrap::after {
@@ -483,6 +512,9 @@ body {
   font-weight: 600;
   color: var(--text);
   margin-bottom: 0.6rem;
+  /* Reset h3 UA styles */
+  line-height: inherit;
+  letter-spacing: inherit;
 }
 
 .skills-chips {
@@ -515,6 +547,7 @@ body {
   gap: 0;
   position: relative;
   padding-left: 1.5rem;
+  list-style: none;
 }
 
 .timeline::before {
@@ -717,6 +750,23 @@ body {
   padding-top: 0.25rem;
 }
 
+.project-links {
+  display: flex;
+  gap: 0.75rem;
+  padding-top: 0.25rem;
+}
+
+.project-link {
+  font-size: 0.78rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.project-link:hover {
+  text-decoration: underline;
+}
+
 /* ─── EDUCATION ─── */
 .edu-list {
   display: flex;
@@ -732,6 +782,7 @@ body {
 
 .edu-year {
   font-size: 0.8rem;
+  font-weight: 400;
   color: var(--text-dim);
   padding-top: 0.2rem;
 }
@@ -795,14 +846,16 @@ body {
   gap: 1.5rem;
 }
 
-.footer-links a {
+.footer-links a,
+.footer-link {
   font-size: 0.82rem;
   color: var(--text-muted);
   text-decoration: none;
   transition: color 0.2s;
 }
 
-.footer-links a:hover {
+.footer-links a:hover,
+.footer-link:hover {
   color: var(--text);
 }
 

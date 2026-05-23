@@ -1,3 +1,7 @@
+import Image from 'next/image';
+import { SITE } from '../data/site';
+import ObfuscatedEmail from './ObfuscatedEmail';
+
 export default function Hero() {
   return (
     <section className="hero" id="top">
@@ -5,7 +9,7 @@ export default function Hero() {
         <div className="mac-window">
 
           <div className="mac-titlebar">
-            <div className="mac-dots">
+            <div className="mac-dots" aria-hidden="true">
               <span className="mac-dot mac-dot-red" />
               <span className="mac-dot mac-dot-yellow" />
               <span className="mac-dot mac-dot-green" />
@@ -16,16 +20,22 @@ export default function Hero() {
           <div className="mac-body">
             <div className="hero-layout">
               <div className="hero-avatar-wrap">
-                <img
+                <Image
                   src="/avatar.jpg"
-                  alt="Joshua Cabunilas"
+                  alt={`${SITE.name}, ${SITE.title}`}
+                  width={148}
+                  height={148}
+                  layout="fixed"
+                  objectFit="cover"
+                  objectPosition="center top"
                   className="hero-avatar"
+                  priority
                 />
               </div>
               <div className="hero-info">
-                <p className="hero-location">Parañaque City, Philippines</p>
-                <h1 className="hero-name">Joshua John Cabunilas</h1>
-                <p className="hero-role">Flutter Mobile Developer</p>
+                <p className="hero-location">{SITE.location}</p>
+                <h1 className="hero-name">{SITE.name}</h1>
+                <p className="hero-role">{SITE.title}</p>
                 <p className="hero-current">
                   Currently at{' '}
                   <span style={{ color: 'var(--text)', fontWeight: 500 }}>Ventaja International</span>
@@ -33,16 +43,16 @@ export default function Hero() {
                 </p>
                 <div className="mac-divider" />
                 <div className="hero-links">
-                  <a href="/CV-Joshua Cabunilas-2026.pdf" download className="hero-link-primary">
+                  <a href={SITE.cvPath} download className="hero-link-primary">
                     Download CV
                   </a>
-                  <a href="https://github.com/joshuacabunilas" className="hero-link" target="_blank" rel="noopener noreferrer">
+                  <a href={SITE.github} className="hero-link" target="_blank" rel="noopener noreferrer">
                     GitHub
                   </a>
-                  <a href="https://linkedin.com/in/joshua-cabunilas-0587b8179" className="hero-link" target="_blank" rel="noopener noreferrer">
+                  <a href={SITE.linkedin} className="hero-link" target="_blank" rel="noopener noreferrer">
                     LinkedIn
                   </a>
-                  <a href="mailto:joshuacabunilas20@gmail.com" className="hero-link">Email</a>
+                  <ObfuscatedEmail className="hero-link" />
                 </div>
               </div>
             </div>

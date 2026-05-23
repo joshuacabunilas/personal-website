@@ -1,3 +1,6 @@
+import { SITE } from '../data/site';
+import ObfuscatedEmail from './ObfuscatedEmail';
+
 export default function Footer() {
   return (
     <footer className="footer">
@@ -9,16 +12,16 @@ export default function Footer() {
             <span className="footer-tagline">Flutter Developer · Manila, PH</span>
           </div>
 
-          <div className="footer-links">
-            <a href="mailto:joshuacabunilas20@gmail.com">Email</a>
-            <a href="https://linkedin.com/in/joshua-cabunilas-0587b8179" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="https://github.com/joshuacabunilas" target="_blank" rel="noopener noreferrer">GitHub</a>
-          </div>
+          <nav className="footer-links" aria-label="Footer navigation">
+            <ObfuscatedEmail className="footer-link" />
+            <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" className="footer-link">LinkedIn</a>
+            <a href={SITE.github} target="_blank" rel="noopener noreferrer" className="footer-link">GitHub</a>
+          </nav>
 
         </div>
 
         <div className="footer-bottom">
-          <p className="footer-copy">© {new Date().getFullYear()} Joshua John Cabunilas. All rights reserved.</p>
+          <p className="footer-copy">© {new Date().getFullYear()} {SITE.name}. All rights reserved.</p>
         </div>
       </div>
     </footer>

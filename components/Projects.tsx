@@ -1,45 +1,4 @@
-const projects = [
-  {
-    name: 'Tubo PH',
-    desc: 'Timekeeping solution for manpower agencies — tracks employee locations, lateness, absences, and overtime on iOS & Android at ₱50/employee/month, replacing unreliable biometric systems.',
-    tags: ['Flutter', 'Dart', 'BLoC', 'iOS & Android'],
-    badge: 'private',
-    highlight: null,
-  },
-  {
-    name: 'PayRemit',
-    desc: 'Fintech app for Filipino and Indian migrant workers to pay SSS, Pag-IBIG, and PhilHealth contributions, settle bills, and purchase load — available on iOS & Android.',
-    tags: ['Flutter', 'Dart', 'BLoC', 'Fintech'],
-    badge: 'private',
-    highlight: null,
-  },
-  {
-    name: 'AFB Detection — MASK R-CNN',
-    desc: 'AI-powered microscopy tool detecting Acid-Fast Bacilli in slit-skin smear slides. Presented at ICBET 2023.',
-    tags: ['Python', 'TensorFlow', 'ML', 'Research'],
-    badge: 'research',
-    highlight: '2nd Best Poster Thesis · ICBET 2023',
-  },
-  {
-    name: 'IoT Smart Parking System',
-    desc: 'Embedded systems project using Arduino and the Blynk app for real-time parking slot detection and remote monitoring.',
-    tags: ['Arduino', 'C++', 'IoT', 'Embedded'],
-    badge: null,
-    highlight: null,
-  },
-  {
-    name: 'COVID-19 Herd Immunity Predictor',
-    desc: 'C++ simulation predicting the timeline of COVID-19 herd immunity in the Philippines using epidemiological modelling.',
-    tags: ['C++', 'Simulation', 'Research'],
-    badge: 'research',
-    highlight: null,
-  },
-];
-
-const BADGE_LABEL: Record<string, string> = {
-  private:  'Private',
-  research: 'Research',
-};
+import { projects, BADGE_LABEL } from '../data/projects';
 
 export default function Projects() {
   return (
@@ -67,10 +26,37 @@ export default function Projects() {
               <p className="project-desc">{p.desc}</p>
 
               <div className="project-tags">
-                {p.tags.map(tag => (
+                {p.tags.map((tag) => (
                   <span key={tag} className="tag">{tag}</span>
                 ))}
               </div>
+
+              {(p.github || p.url) && (
+                <div className="project-links">
+                  {p.github && (
+                    <a
+                      href={p.github}
+                      className="project-link"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`View ${p.name} on GitHub`}
+                    >
+                      GitHub
+                    </a>
+                  )}
+                  {p.url && (
+                    <a
+                      href={p.url}
+                      className="project-link"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`View ${p.name} live`}
+                    >
+                      Live
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
           ))}
         </div>
