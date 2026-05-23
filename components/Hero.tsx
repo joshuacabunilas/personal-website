@@ -1,22 +1,13 @@
 import Image from 'next/image';
 import { SITE } from '../data/site';
 import ObfuscatedEmail from './ObfuscatedEmail';
+import MacWindow from './MacWindow';
 
 export default function Hero() {
   return (
     <section className="hero" id="top">
       <div className="container">
-        <div className="mac-window">
-
-          <div className="mac-titlebar">
-            <div className="mac-dots" aria-hidden="true">
-              <span className="mac-dot mac-dot-red" />
-              <span className="mac-dot mac-dot-yellow" />
-              <span className="mac-dot mac-dot-green" />
-            </div>
-            <span className="mac-title">~/portfolio</span>
-          </div>
-
+        <MacWindow title="~/portfolio">
           <div className="mac-body">
             <div className="hero-layout">
               <div className="hero-avatar-wrap">
@@ -55,8 +46,7 @@ export default function Hero() {
               </div>
             </div>
           </div>
-
-        </div>
+        </MacWindow>
       </div>
     </section>
   );

@@ -1,42 +1,86 @@
+import { useState, ReactNode } from 'react';
 import { experiences } from '../data/experience';
+import MacWindow from './MacWindow';
+
+type Exp = typeof experiences[0];
+
+function highlightBullet(text: string, highlights: string[]): ReactNode {
+  if (!highlights.length) return text;
+  const escaped = [...highlights]
+    .sort((a, b) => b.length - a.length)
+    .map((h) => h.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+  const regex = new RegExp(`(${escaped.join('|')})`, 'g');
+  const parts = text.split(regex);
+  return parts.map((part, i) =>
+    highlights.includes(part) ? <strong key={i} className="bullet-highlight">{part}</strong> : part
+  );
+}
 
 export default function Experience() {
+  const [selected, setSelected] = useState<Exp>(experiences[0]);
+  const [detailOut, setDetailOut] = useState(false);
+
+  function handleSelect(exp: Exp) {
+    if (exp.role === selected.role) return;
+    setDetailOut(true);
+    setTimeout(() => {
+      setSelected(exp);
+      setDetailOut(false);
+    }, 120);
+  }
+
   return (
     <section className="section" id="experience">
       <div className="container">
         <p className="section-label">Experience</p>
         <h2 className="section-title">Where I&apos;ve worked</h2>
 
-        <ol className="timeline">
-          {experiences.map((exp, i) => (
-            <li key={i} className={`timeline-item${exp.current ? ' timeline-current' : ''}`}>
-              <span className="timeline-dot" aria-hidden="true" />
+        <MacWindow title="~/experience">
+          <div className="finder-pane">
+            <ul className="finder-sidebar" aria-label="Experience list">
+              {experiences.map((exp) => (
+                <li key={exp.role}>
+                  <button
+                    className={`finder-sidebar-item exp-sidebar-item${selected.role === exp.role ? ' finder-sidebar-item--active' : ''}`}
+                    onClick={() => handleSelect(exp)}
+                    aria-current={selected.role === exp.role ? true : undefined}
+                  >
+                    <div className="exp-sidebar-text">
+                      <span className="exp-sidebar-company">{exp.shortName}</span>
+                      <span className="exp-sidebar-period">{exp.period}</span>
+                    </div>
+                    {exp.current && <span className="exp-sidebar-now" aria-label="Current position" />}
+                  </button>
+                </li>
+              ))}
+            </ul>
 
-              <div className="timeline-header">
+            <div className={`finder-detail${detailOut ? ' finder-detail--out' : ''}`}>
+              <div className="exp-detail-header">
                 <div>
-                  <div className="timeline-company">{exp.company}</div>
-                  <div className="timeline-role">{exp.role}</div>
+                  <h3 className="timeline-company">{selected.company}</h3>
+                  <p className="timeline-role">{selected.role}</p>
                 </div>
                 <div className="timeline-period">
-                  {exp.current && <span className="timeline-badge">Now</span>}
-                  {exp.period}
+                  {selected.current && <span className="timeline-badge">Now</span>}
+                  {selected.period}
                 </div>
               </div>
 
               <ul className="timeline-bullets">
-                {exp.bullets.map((bullet, j) => (
-                  <li key={j}>{bullet}</li>
+                {selected.bullets.map((b, i) => (
+                  <li key={i}>{highlightBullet(b, selected.highlights)}</li>
                 ))}
               </ul>
 
-              <div className="timeline-tags">
-                {exp.tags.map((tag) => (
+              <div className="project-tags">
+                {selected.tags.map((tag) => (
                   <span key={tag} className="tag">{tag}</span>
                 ))}
               </div>
-            </li>
-          ))}
-        </ol>
+            </div>
+          </div>
+        </MacWindow>
       </div>
     </section>
   );

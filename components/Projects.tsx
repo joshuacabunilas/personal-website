@@ -1,63 +1,96 @@
-import { projects, BADGE_LABEL } from '../data/projects';
+import { useState } from 'react';
+import { projects, BADGE_LABEL, Project } from '../data/projects';
+import MacWindow from './MacWindow';
 
 export default function Projects() {
+  const [selected, setSelected] = useState<Project>(projects[0]);
+  const [detailOut, setDetailOut] = useState(false);
+
+  function handleSelect(p: Project) {
+    if (p.name === selected.name) return;
+    setDetailOut(true);
+    setTimeout(() => {
+      setSelected(p);
+      setDetailOut(false);
+    }, 120);
+  }
+
   return (
     <section className="section" id="projects">
       <div className="container">
         <p className="section-label">Projects</p>
         <h2 className="section-title">Things I&apos;ve built</h2>
 
-        <div className="projects-grid">
-          {projects.map((p) => (
-            <div key={p.name} className="project-card">
-              <div className="project-card-top">
-                <div className="project-name">{p.name}</div>
-                {p.badge && (
-                  <span className={`project-badge project-badge--${p.badge}`}>
-                    {BADGE_LABEL[p.badge]}
+        <MacWindow title="~/projects">
+          <div className="finder-pane">
+            <ul className="finder-sidebar" aria-label="Project list">
+              {projects.map((p) => (
+                <li key={p.name}>
+                  <button
+                    className={`finder-sidebar-item${selected.name === p.name ? ' finder-sidebar-item--active' : ''}`}
+                    onClick={() => handleSelect(p)}
+                    aria-current={selected.name === p.name ? true : undefined}
+                  >
+                    <span className="finder-sidebar-name">{p.name}</span>
+                    {p.badge && (
+                      <span className={`finder-sidebar-dot finder-sidebar-dot--${p.badge}`} aria-hidden="true" />
+                    )}
+                  </button>
+                </li>
+              ))}
+            </ul>
+
+            <div className={`finder-detail${detailOut ? ' finder-detail--out' : ''}`}>
+              <div className="finder-detail-header">
+                <h3 className="finder-detail-name">{selected.name}</h3>
+                {selected.badge && (
+                  <span className={`project-badge project-badge--${selected.badge}`}>
+                    {BADGE_LABEL[selected.badge]}
                   </span>
                 )}
               </div>
 
-              {p.highlight && (
-                <div className="project-highlight">{p.highlight}</div>
+              {selected.highlight && (
+                <p className="project-highlight">{selected.highlight}</p>
               )}
 
-              <p className="project-desc">{p.desc}</p>
+              <p className="project-desc">{selected.desc}</p>
 
               <div className="project-tags">
-                {p.tags.map((tag) => (
+                {selected.tags.map((tag) => (
                   <span key={tag} className="tag">{tag}</span>
                 ))}
               </div>
 
-              {(p.github || p.appStore || p.playStore || p.url) && (
+              {(selected.github || selected.appStore || selected.playStore || selected.url) ? (
                 <div className="project-links">
-                  {p.github && (
-                    <a href={p.github} className="project-link" target="_blank" rel="noopener noreferrer" aria-label={`View ${p.name} on GitHub`}>
+                  {selected.github && (
+                    <a href={selected.github} className="project-link" target="_blank" rel="noopener noreferrer" aria-label={`View ${selected.name} on GitHub`}>
                       GitHub
                     </a>
                   )}
-                  {p.appStore && (
-                    <a href={p.appStore} className="project-link" target="_blank" rel="noopener noreferrer" aria-label={`View ${p.name} on the App Store`}>
+                  {selected.appStore && (
+                    <a href={selected.appStore} className="project-link" target="_blank" rel="noopener noreferrer" aria-label={`View ${selected.name} on the App Store`}>
                       App Store
                     </a>
                   )}
-                  {p.playStore && (
-                    <a href={p.playStore} className="project-link" target="_blank" rel="noopener noreferrer" aria-label={`View ${p.name} on the Play Store`}>
+                  {selected.playStore && (
+                    <a href={selected.playStore} className="project-link" target="_blank" rel="noopener noreferrer" aria-label={`View ${selected.name} on the Play Store`}>
                       Play Store
                     </a>
                   )}
-                  {p.url && (
-                    <a href={p.url} className="project-link" target="_blank" rel="noopener noreferrer" aria-label={p.urlLabel ? `${p.urlLabel} — ${p.name}` : `View ${p.name} live`}>
-                      {p.urlLabel ?? 'Live'}
+                  {selected.url && (
+                    <a href={selected.url} className="project-link" target="_blank" rel="noopener noreferrer" aria-label={selected.urlLabel ? `${selected.urlLabel} — ${selected.name}` : `View ${selected.name} live`}>
+                      {selected.urlLabel ?? 'Live'}
                     </a>
                   )}
                 </div>
+              ) : (
+                <p className="finder-detail-private">Source code is private</p>
               )}
             </div>
-          ))}
-        </div>
+          </div>
+        </MacWindow>
       </div>
     </section>
   );

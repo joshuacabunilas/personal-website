@@ -32,13 +32,21 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const sections = document.querySelectorAll('section[id]');
-    const observer = new IntersectionObserver(
-      (entries) => entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id); }),
-      { threshold: 0.35, rootMargin: '-52px 0px 0px 0px' }
-    );
-    sections.forEach((s) => observer.observe(s));
-    return () => observer.disconnect();
+    const onScroll = () => {
+      const sections = Array.from(
+        document.querySelectorAll('section[id]')
+      ) as HTMLElement[];
+      const offset = 80;
+      const scrollY = window.scrollY + offset;
+      let current = '';
+      for (const s of sections) {
+        if (s.offsetTop <= scrollY) current = s.id;
+      }
+      setActive(current);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   useEffect(() => {
