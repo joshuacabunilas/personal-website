@@ -6,7 +6,10 @@ type Tier = 'primary' | 'secondary';
 
 export default function Skills() {
   const [tier, setTier] = useState<Tier>('primary');
-  const visible = categories.filter((c) => c.tier === tier);
+  const isPrimary = tier === 'primary';
+  const allSkills = categories
+    .filter((c) => c.tier === tier)
+    .flatMap((c) => c.skills);
 
   return (
     <section className="section" id="skills">
@@ -17,13 +20,13 @@ export default function Skills() {
         <MacWindow title="~/skills">
           <div className="skills-tabs">
             <button
-              className={`skills-tab${tier === 'primary' ? ' skills-tab--active' : ''}`}
+              className={`skills-tab${isPrimary ? ' skills-tab--active' : ''}`}
               onClick={() => setTier('primary')}
             >
               Core Stack
             </button>
             <button
-              className={`skills-tab${tier === 'secondary' ? ' skills-tab--active' : ''}`}
+              className={`skills-tab${!isPrimary ? ' skills-tab--active' : ''}`}
               onClick={() => setTier('secondary')}
             >
               Also Familiar With
@@ -31,27 +34,27 @@ export default function Skills() {
           </div>
 
           <div className="mac-body skills-body">
-            {visible.map((cat) => (
-              <div key={cat.label} className="skills-category">
-                <h3 className="skills-category-label">{cat.label}</h3>
-                <div className="skills-chips">
-                  {cat.skills.map(({ name, icon: Icon, color }) => (
-                    <span
-                      key={name}
-                      className={`skills-chip${tier === 'primary' ? ' skills-chip--primary' : ''}`}
-                      style={tier === 'primary' && color ? { borderColor: `${color}55` } : undefined}
-                    >
-                      <Icon
-                        size={15}
-                        style={{ color: color ?? (tier === 'primary' ? 'var(--text)' : 'var(--text-dim)'), flexShrink: 0 }}
-                        aria-hidden="true"
-                      />
-                      {name}
-                    </span>
-                  ))}
+            <div className="skill-icon-grid">
+              {allSkills.map(({ name, icon: Icon, color }) => (
+                <div
+                  key={name}
+                  className={`skill-icon-tile${isPrimary ? ' skill-icon-tile--primary' : ''}`}
+                >
+                  <div
+                    className="skill-icon-box"
+                    style={color ? { background: `${color}18`, borderColor: `${color}45` } : undefined}
+                  >
+                    <Icon
+                      size={isPrimary ? 28 : 22}
+                      style={{ color: color ?? 'var(--text-muted)' }}
+                      aria-hidden="true"
+                    />
+                  </div>
+                  <span className="skill-icon-name">{name}</span>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
           </div>
         </MacWindow>
       </div>

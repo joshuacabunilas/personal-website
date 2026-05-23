@@ -1,6 +1,6 @@
 import type { IconType } from 'react-icons';
 import {
-  SiFlutter, SiDart,
+  SiFlutter, SiDart, SiFirebase,
   SiDotnet, SiCsharp, SiPython, SiMicrosoftsqlserver,
   SiNextdotjs, SiReact, SiJavascript,
   SiAmazonaws, SiGit, SiPostman, SiGithubactions,
@@ -19,6 +19,8 @@ export interface SkillCategory {
   tier: 'primary' | 'secondary';
 }
 
+export const primaryTools = ['BLoC', 'Clean Architecture', 'Shorebird'];
+
 export const categories: SkillCategory[] = [
   {
     label: 'Mobile',
@@ -26,6 +28,7 @@ export const categories: SkillCategory[] = [
     skills: [
       { name: 'Flutter',    icon: SiFlutter,            color: '#02569B' },
       { name: 'Dart',       icon: SiDart,               color: '#0175C2' },
+      { name: 'Firebase',   icon: SiFirebase,           color: '#FFCA28' },
     ],
   },
   {
