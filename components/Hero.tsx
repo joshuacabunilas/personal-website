@@ -25,9 +25,7 @@ export default function Hero() {
                   alt={`${SITE.name}, ${SITE.title}`}
                   width={148}
                   height={148}
-                  layout="fixed"
-                  objectFit="cover"
-                  objectPosition="center top"
+                  style={{ objectFit: 'cover', objectPosition: 'center top' }}
                   className="hero-avatar"
                   priority
                 />

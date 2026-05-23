@@ -16,11 +16,13 @@ export interface Skill {
 export interface SkillCategory {
   label: string;
   skills: Skill[];
+  tier: 'primary' | 'secondary';
 }
 
 export const categories: SkillCategory[] = [
   {
     label: 'Mobile',
+    tier: 'primary',
     skills: [
       { name: 'Flutter',    icon: SiFlutter,            color: '#02569B' },
       { name: 'Dart',       icon: SiDart,               color: '#0175C2' },
@@ -28,6 +30,7 @@ export const categories: SkillCategory[] = [
   },
   {
     label: 'Backend',
+    tier: 'primary',
     skills: [
       { name: '.NET',       icon: SiDotnet,             color: '#512BD4' },
       { name: 'C#',         icon: SiCsharp,             color: '#239120' },
@@ -37,6 +40,7 @@ export const categories: SkillCategory[] = [
   },
   {
     label: 'Web',
+    tier: 'primary',
     skills: [
       { name: 'Next.js',    icon: SiNextdotjs,          color: null },
       { name: 'React',      icon: SiReact,              color: '#61DAFB' },
@@ -45,6 +49,7 @@ export const categories: SkillCategory[] = [
   },
   {
     label: 'Cloud & Tools',
+    tier: 'secondary',
     skills: [
       { name: 'AWS',            icon: SiAmazonaws,      color: '#FF9900' },
       { name: 'Git',            icon: SiGit,            color: '#F05032' },
@@ -54,6 +59,7 @@ export const categories: SkillCategory[] = [
   },
   {
     label: 'Embedded & ML',
+    tier: 'secondary',
     skills: [
       { name: 'Arduino',      icon: SiArduino,     color: '#00979D' },
       { name: 'Raspberry Pi', icon: SiRaspberrypi, color: '#A22846' },

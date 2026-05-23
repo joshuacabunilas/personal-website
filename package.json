@@ -3,27 +3,27 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider next dev",
-    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider next build",
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start"
   },
   "engines": {
-    "node": ">=16.x"
+    "node": ">=18.x"
   },
   "dependencies": {
-    "next": "11.1.4",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "@vercel/analytics": "^2.0.1",
+    "next": "^14.2.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
     "react-icons": "^4.12.0"
   },
   "devDependencies": {
-    "@types/node": "14.18.12",
-    "@types/react": "17.0.39",
-    "@types/react-dom": "17.0.11",
-    "cross-env": "^10.1.0",
-    "eslint": "^9.39.4",
-    "eslint-config-next": "^16.2.6",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "14.2.0",
     "prettier": "^3.8.3",
-    "typescript": "4.5.5"
+    "typescript": "^5.0.0"
   }
 }

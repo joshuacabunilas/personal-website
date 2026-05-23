@@ -23,7 +23,11 @@ export default function Experience() {
                 </div>
               </div>
 
-              <p className="timeline-desc">{exp.desc}</p>
+              <ul className="timeline-bullets">
+                {exp.bullets.map((bullet, j) => (
+                  <li key={j}>{bullet}</li>
+                ))}
+              </ul>
 
               <div className="timeline-tags">
                 {exp.tags.map((tag) => (

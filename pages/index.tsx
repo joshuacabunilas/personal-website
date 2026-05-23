@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
@@ -6,7 +7,9 @@ import Skills from '../components/Skills';
 import Experience from '../components/Experience';
 import Projects from '../components/Projects';
 import Education from '../components/Education';
+import Contact from '../components/Contact';
 import Footer from '../components/Footer';
+import BackToTop from '../components/BackToTop';
 import { SITE } from '../data/site';
 
 const jsonLd = {
@@ -24,6 +27,31 @@ const jsonLd = {
 };
 
 export default function Home() {
+  useEffect(() => {
+    const sections = Array.from(document.querySelectorAll('.section'));
+
+    sections.forEach((s) => {
+      const rect = s.getBoundingClientRect();
+      if (rect.top >= window.innerHeight) {
+        s.classList.add('will-reveal');
+      }
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.remove('will-reveal');
+            observer.unobserve(e.target);
+          }
+        }),
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       <Head>
@@ -47,7 +75,7 @@ export default function Home() {
         <meta name="twitter:description" content={SITE.description} />
         <meta name="twitter:image" content={`${SITE.siteUrl}/avatar.jpg`} />
 
-        {/* JSON-LD structured data */}
+        {/* JSON-LD */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -69,8 +97,12 @@ export default function Home() {
         <Projects />
         <hr className="divider" />
         <Education />
+        <hr className="divider" />
+        <Contact />
         <Footer />
       </main>
+
+      <BackToTop />
     </>
   );
 }

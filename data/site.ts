@@ -8,7 +8,7 @@ export const SITE = {
   github: 'https://github.com/joshuacabunilas',
   linkedin: 'https://linkedin.com/in/joshua-cabunilas-0587b8179',
   /** Update this to your actual deployment URL */
-  siteUrl: 'https://joshuacabunilas.vercel.app',
+  siteUrl: 'https://jcabunilas.vercel.app',
   description:
     'Flutter Mobile Developer specializing in production-grade iOS & Android apps with Flutter, Dart, and Clean Architecture. Based in the Philippines.',
   cvPath: '/CV-Joshua Cabunilas-2026.pdf',
